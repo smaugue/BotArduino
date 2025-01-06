@@ -41,12 +41,4 @@ class UltraSonic {
       delay(450);
       myServo.detach();
     }
-
-    bool obstacl() {
-      float d = getDistance();
-      if (d > 600) {
-        return true;
-      };
-      return false;
-    }
 };
