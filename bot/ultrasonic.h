@@ -43,8 +43,8 @@ class UltraSonic {
     }
 
     bool obstacl() {
-      float d = getDistance()/10;
-      if (d > 5) {
+      float d = getDistance();
+      if (d > 600) {
         return true;
       };
       return false;
