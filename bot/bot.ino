@@ -1,23 +1,51 @@
 #include "ultrasonic.h"
 #include "carMotors.h"
 #include"lightsensor.h"
-#define BASE_SPEED 50
+#include <IRremote.h>       // infrared Library
+#include <FastLED.h>        // RGB Led Library
+
 
 CarMotors engine;
 LightSensor right(A0);
 LightSensor center(A1);
 LightSensor left(A2);
 UltraSonic sensor;
+const int RGBPin = 4;       // RGB Led pin
+const int receiverPin = 9;  // infrared signal receiving pin
+const int numLEDs = 1;
+CRGB leds[numLEDs];
+uint32_t tabColors[]= {0xFF0000,0xFB4C0D,0x00FF00};
 
-void setup() {
-sensor.init();
-engine.init(BASE_SPEED);
-Serial.begin(9600);
-Serial.println("Start...");
-Serial.println();
+IRrecv irrecv(receiverPin); // initialization of the IRrecv object
+decode_results results;     // define structure type
+
+
+void setup() { 
+  engine.init(0);
+  sensor.init();
+  Serial.begin(9600);
+  Serial.println("Start...");
+  Serial.println();
+  irrecv.enableIRIn();    // Start receiving
+  FastLED.addLeds<NEOPIXEL, RGBPin>(leds, numLEDs);
+  FastLED.setBrightness(20);
+  FastLED.showColor(tabColors[1]);
 }
 
 void loop() {
+  if (irrecv.decode(&results)) { // if a code is available, write it in result
+        unsigned long int codeC = results.value; // extracts code from results
+        Serial.print(codeC); Serial.print(" ");
+        Serial.print(codeC,BIN); Serial.print(" ");
+        Serial.println(codeC,HEX);
+        
+        if (results.value == 0xFF02FD) {
+          FastLED.showColor(tabColors[2]);
+          engine.init(50);
+        }  
+        irrecv.resume(); // Ready to receive the next value
+    }
+  
   Serial.println(right.readValue());
   //engine.stop();
   int b = checkwall();
@@ -73,27 +101,50 @@ int checkline() {
   return 2;
 }
 
-int checkwall() {
+ int checkwall() {
   sensor.turnHead(90);
   delay(50);
   float dcenter = sensor.getDistance();
-  if (dcenter < 200) engine.stop();
+  if (dcenter < 200){
+    engine.stop();
+    delay(1500);
+    engine.turnLeft();
+    delay(1500);
+    engine.stop();
+
+  }
   sensor.turnHead(40);
   delay(50);
   float dleft = sensor.getDistance();
-  if (dleft < 200) engine.stop();
+  if (dleft < 200){ 
+    engine.stop();
+    delay(1500);
+    engine.turnLeft();
+    delay(1500);
+    engine.stop();
+
+  }
   sensor.turnHead(90);
   delay(50);
   dcenter = sensor.getDistance();
-  if (dcenter < 200) engine.stop();
+  if (dcenter < 200){
+    engine.stop();
+    delay(1500);
+    engine.turnLeft();
+    delay(1500);
+    engine.stop();
+
+  }
   sensor.turnHead(140);
   delay(50);
   float dright = sensor.getDistance();
-  if (dcenter < 200) {
-    if (dleft > 200) return 0;
-    return 1;
-  };
-  if (dleft < 200) return 1;
-  if (dright < 200) return 0;
-  return 2;
+  if (dright < 200){
+    engine.stop();
+    delay(1500);
+    engine.turnLeft();
+    delay(1500);
+    engine.stop();
+
+  }
+  else return 2;
 }
