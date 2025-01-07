@@ -9,10 +9,13 @@ public:
 
     bool line() {
         int state = analogRead(port);
-        return (state > 600);
+        if (state > 600) {
+          return true;
+        }
+        else return false;
     }
 
-    int readValue() {
+    int read() {
         return analogRead(port);
     }
 };
