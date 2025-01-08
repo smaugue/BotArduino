@@ -27,7 +27,7 @@ class UltraSonic {
       digitalWrite(trig_pin,LOW);   
       delayMicroseconds(2);
       digitalWrite(trig_pin,HIGH);  
-      delayMicroseconds(10);
+      delayMicroseconds(8);
       digitalWrite(trig_pin,LOW);   
       float d = pulseIn(echo_pin, HIGH)/5.8f;   
       return d;
