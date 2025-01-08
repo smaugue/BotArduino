@@ -9,7 +9,7 @@ Nous avons choisi de nous concentrer exclusivement sur le **Challenge #3 : Monta
 
 ## Challenge #3 : Montagnes et Falaises  
 
-![Shéma](images/c3s.png)
+![Schéma](images/c3s.png)
 
 ### Énoncé du défi  
 Le robot démarre dans une arène de 2 m x 1,5 m délimitée par :  
@@ -38,13 +38,18 @@ Le robot utilise son radar de proximité et son détecteur de lignes pour :
    - Le robot ne doit **pas** toucher les murs.  
    - Le robot ne doit **pas** franchir la ligne de la falaise.  
    - L’algorithme doit permettre au robot de sortir rapidement, quelle que soit la position de départ.  
+
+### Fonctionnalités optionnelles  
+**Détection automatique du seuil de luminosité :**  
+   En plaçant les capteurs de luminosité sur une ligne, puis en appuyant sur `*`, le robot définit le seuil de détection de ligne par rapport à la luminosité actuelle.  
+
 ---
 
 ## Structure du projet  
 ### Code et fichiers  
-- `lightsensor.h` : Classe pour gérer le capteur de lignes et calculer les distances.
-- `carMotors.h` : Classe pour gérer les moteurs du robot.
-- `ultrasonic.h` : Classe pour gérer le capteur ultrasong pour les distances.
+- `lightsensor.h` : Classe pour gérer le capteur de lignes et calculer les distances.  
+- `carMotors.h` : Classe pour gérer les moteurs du robot.  
+- `ultrasonic.h` : Classe pour gérer le capteur ultrasonique pour les distances.  
 - `bot.ino` : Programme principal implémentant la logique de déplacement et les interactions avec les capteurs.  
 
 ### Capteurs utilisés  
@@ -59,7 +64,8 @@ Le robot utilise son radar de proximité et son détecteur de lignes pour :
 1. Téléversez le code sur votre robot à l’aide de l’IDE Arduino.  
 2. Placez le robot dans l’arène (position initiale 1 ou 2).  
 3. Activez le robot via l’interrupteur d’alimentation.  
-4. Appuyez sur `OK` de la télécommande pour commencer.  
+4. Calibrez la détection des lignes en plaçant les capteurs de lumière sur une ligne, puis en appuyant sur `*`.  
+5. Appuyez sur `OK` de la télécommande pour commencer.  
 
 ---
 
@@ -71,4 +77,4 @@ Le robot utilise son radar de proximité et son détecteur de lignes pour :
 ---
 
 ## Auteurs  
-Projet réalisé dans le cadre de la SAÉ 15, avec un focus exclusif sur le défi 3.
+Projet réalisé dans le cadre de la SAÉ 15, avec un focus exclusif sur le défi 3.  
