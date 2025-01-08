@@ -34,6 +34,18 @@ LightSensor left(A2); // Capteur de lumière à gauche
 UltraSonic sensor; // Capteur ultrasonique pour détection de distance
 IRrecv irrecv(receiverPin); // Récepteur infrarouge
 
+const int RGBPin = 4;       // RGB Led pin
+const int receiverPin = 9;  // infrared signal receiving pin
+const int numLEDs = 1;
+CRGB leds[numLEDs];
+uint32_t tabColors[]= {0xFF0000,0xFB4C0D,0x00FF00};
+
+IRrecv irrecv(receiverPin); // initialization of the IRrecv object
+decode_results results;     // define structure type
+
+unsigned long previousWallCheckTime = 0; // Pour le timer de checkwall
+const unsigned long wallCheckInterval = 100; // Intervalle d'exécution de checkwall (ms)
+
 void setup() {
   // Initialisation des capteurs et moteurs
   sensor.init();

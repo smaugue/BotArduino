@@ -41,4 +41,10 @@ class UltraSonic {
       delay(450);
       myServo.detach();
     }
+
+    bool wall() {
+      int d = getDistance();
+      if (d<200) return true;
+      return false;
+    }
 };
