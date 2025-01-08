@@ -9,6 +9,8 @@ Nous avons choisi de nous concentrer exclusivement sur le **Challenge #3 : Monta
 
 ## Challenge #3 : Montagnes et Falaises  
 
+![Shéma](images/c3s.png)
+
 ### Énoncé du défi  
 Le robot démarre dans une arène de 2 m x 1,5 m délimitée par :  
 - Des **murs** représentant des montagnes.  
@@ -36,7 +38,6 @@ Le robot utilise son radar de proximité et son détecteur de lignes pour :
    - Le robot ne doit **pas** toucher les murs.  
    - Le robot ne doit **pas** franchir la ligne de la falaise.  
    - L’algorithme doit permettre au robot de sortir rapidement, quelle que soit la position de départ.  
-
 ---
 
 ## Structure du projet  
