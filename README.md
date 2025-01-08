@@ -3,7 +3,7 @@
 ## Résumé  
 Cette **Situation d’Apprentissage et d’Évaluation (SAÉ)** consiste à développer les algorithmes et programmes permettant à un robot de se déplacer de façon autonome dans des environnements variés.  
 
-Nous avons choisi de nous concentrer exclusivement sur le **Challenge #3 : Montagnes et Falaises**, le défi le plus complexe parmi les trois proposés.  
+Nous avons choisi de nous concentrer exclusivement sur le **Challenge #3 : Montagnes et Falaises**.  
 
 ---
 
